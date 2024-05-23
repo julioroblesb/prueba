@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julio Robles - Programador No-Code</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        header {
+            background: linear-gradient(to right, #0066cc, #3399ff);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.5s;
+        }
+        header.scrolled {
+            background: linear-gradient(to right, #005bb5, #287ddf);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        header p {
+            margin-top: 0.5rem;
+            font-size: 1.5rem;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('hero-image.jpg') no-repeat center center/cover;
+            height: 80vh;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+        }
+        .hero p {
+            font-size: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+        }
+        .section {
+            background-color: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .section h2 {
+            margin-top: 0;
+            font-size: 2.5rem;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 0.5rem;
+            position: relative;
+        }
+        .section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: #0066cc;
+            transition: width 0.3s ease;
+        }
+        .section h2:hover::after {
+            width: 100%;
+        }
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .services, .portfolio {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .services .service, .portfolio .project {
+            flex: 1 1 calc(33.333% - 1.5rem);
+            background-color: #eaeaea;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+        .services .service:hover, .portfolio .project:hover {
+            background-color: #d4d4d4;
+        }
+        .services .service i, .portfolio .project i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #0066cc;
+        }
+        .services .service img, .portfolio .project img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        .contact form {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact label {
+            margin: 0.5rem 0 0.2rem;
+        }
+        .contact input, .contact textarea {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact input:focus, .contact textarea:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+        }
+        .contact input[type="submit"] {
+            margin-top: 1rem;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .contact input[type="submit"]:hover {
+            background-color: #005bb5;
+        }
+        @media (max-width: 768px) {
+            .services .service, .portfolio .project {
+                flex: 1 1 calc(100% - 1.5rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <h1>Julio Robles - Programador No-Code</h1>
+        <p>Transforma tus ideas en realidades sin escribir una sola línea de código.</p>
+    </header>
+    <nav>
+        <a href="#about">Sobre mí</a>
+        <a href="#services">Servicios</a>
+        <a href="#portfolio">Portafolio</a>
+        <a href="#testimonials">Testimonios</a>
+        <a href="#contact">Contacto</a>
+    </nav>
+    <div class="hero">
+        <div>
+            <h1>Transforma tus ideas en realidades</h1>
+            <p>Servicios de programación no-code para llevar tu negocio al siguiente nivel.</p>
+        </div>
+    </div>
+    <div class="container">
+        <section id="about" class="section">
+            <h2>Sobre mí</h2>
+            <img src="about-me.jpg" alt="Julio Robles" style="max-width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+            <p>¡Hola! Soy Julio Robles, un programador no-code apasionado por convertir ideas en soluciones prácticas y efectivas. Con una sólida experiencia en marketing y ventas, he desarrollado habilidades para crear automatizaciones y herramientas que optimizan procesos y mejoran la eficiencia. Mi objetivo es ayudarte a llevar tus proyectos al siguiente nivel sin necesidad de escribir una sola línea de código.</p>
+        </section>
+        <section id="services" class="section">
+            <h2>Servicios</h2>
+            <div class="services">
+                <div class="service">
+                    <i class="fas fa-cogs"></i>
+                    <img src="service1.jpg" alt="Automatización de procesos">
+                    <h3>Automatización de procesos</h3>
+                    <p>Implementación de automatizaciones eficientes con Make (Integromat) para optimizar tus flujos de trabajo y ahorrar tiempo.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-globe"></i>
+                    <img src="service2.jpg" alt="Creación de sitios web">
+                    <h3>Creación de sitios web</h3>
+                    <p>Desarrollo de sitios web atractivos y funcionales utilizando plataformas no-code para una presencia en línea profesional.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-mobile-alt"></i>
+                    <img src="service3.jpg" alt="Desarrollo de aplicaciones móviles">
+                    <h3>Aplicaciones móviles</h3>
+                    <p>Creación de aplicaciones móviles intuitivas y eficientes sin necesidad de programación, adaptadas a tus necesidades específicas.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-lightbulb"></i>
+                    <img src="service4.jpg" alt="Consultoría en soluciones no-code">
+                    <h3>Consultoría no-code</h3>
+                    <p>Asesoría especializada para implementar soluciones no-code en tu negocio, optimizando recursos y mejorando la productividad.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-tasks"></i>
+                    <img src="service5.jpg" alt="Optimización de flujos de trabajo">
+                    <h3>Optimización de flujos de trabajo</h3>
+                    <p>Identificación y mejora de procesos internos para aumentar la eficiencia y reducir costos operativos.</p>
+                </div>
+            </div>
+        </section>
+        <section id="portfolio" class="section">
+            <h2>Portafolio</h2>
+            <p>Descubre algunos de los proyectos en los que he trabajado:</p>
+            <div class="portfolio">
+                <div class="project">
+                    <i class="fas fa-shopping-cart"></i>
+                    <img src="project1.jpg" alt="E-commerce">
+                    <h3>Sitio web de e-commerce</h3>
+                    <p>Desarrollo de una tienda en línea completa sin código, ofreciendo una experiencia de compra fluida y segura.</p>
+                </div>
+                <div class="project">
+                    <i class="fas fa-bullhorn"></i>
+                    <img src="project2.jpg" alt="Automatización de marketing">
+                    <h3>Automatización de marketing</h3>
+                    <p>Implementación de flujos de trabajo automatizados para una empresa de ventas, aumentando la eficiencia y efectividad.</p>
+                </div>
+                <div class="project">
+                    <i class="fas fa-utensils"></i>
+                    <img src="project3.jpg" alt="Aplicación de reservas">
+                    <h3>Aplicación móvil para reservas</h3>
+                    <p>Creación de una app móvil para gestión de reservas en un restaurante, mejorando la experiencia del cliente.</p>
+                </div>
+            </div>
+        </section>
+        <section id="testimonials" class="section">
+            <h2>Testimonios</h2>
+            <p>"Julio transformó nuestras operaciones con sus soluciones no-code. Ahora podemos enfocarnos en crecer nuestro negocio." - Cliente satisfecho</p>
+            <p>"Gracias a Julio, automatizamos procesos clave y ahorramos tiempo y dinero." - Otro cliente satisfecho</p>
+        </section>
+        <section id="contact" class="section">
+            <h2>Contacto</h2>
+            <p>¿Listo para transformar tus ideas en realidad? ¡Hablemos!</p>
+            <form action="mailto:tuemail@example.com" method="post" enctype="text/plain">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" required></textarea>
+                <input type="submit" value="Enviar">
+            </form>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Julio Robles. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            const sections = document.querySelectorAll('.section');
+            const options = {
+                root: null,
+                threshold: 0.1,
+                rootMargin: "0px"
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, options);
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(50px)';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
